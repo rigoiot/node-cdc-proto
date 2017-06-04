@@ -1,0 +1,9 @@
+{
+  "name": "node-cdc-proto",
+  "version": "1.0.0",
+  "description": "The protocol implement of cdc message for js",
+  "main": "index.js",
+  "repository": "git@code.aliyun.com:rigo/node-cdc-proto.git",
+  "author": "zhangtc@rigoiot.com",
+  "license": "RIGO"
+}

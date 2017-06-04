@@ -1,0 +1,25 @@
+// Copyright 2016 RIGO IoT. All rights reserved.
+//
+// Uses https://github.com/gogo/protobuf
+// compiled via `protoc --proto_path=lib/pb --js_out=import_style=commonjs,binary:lib/pb lib/pb/protocol.proto`
+
+syntax = "proto3";
+package pb;
+
+// import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+// option (gogoproto.marshaler_all) = true;
+// option (gogoproto.sizer_all) = true;
+// option (gogoproto.unmarshaler_all) = true;
+// option (gogoproto.goproto_getters_all) = false;
+
+// How messages are delivered to the NATS cluster
+message CDCMsg {
+  string publisher      = 1;    // Publisher or ClientID
+  string channel        = 2;    // channel
+  string content_type   = 3;    // contentType
+  string protocol       = 4;    // protocol
+  string reply          = 5;    // optional reply
+  bytes  payload        = 6;    // payload
+  bytes  sha256         = 10;   // optional sha256 of data
+}
