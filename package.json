@@ -5,5 +5,9 @@
   "main": "index.js",
   "repository": "git@code.aliyun.com:rigo/node-cdc-proto.git",
   "author": "zhangtc@rigoiot.com",
-  "license": "RIGO"
+  "license": "RIGO",
+  "dependencies": {
+    "google-protobuf": "^3.3.0",
+    "nats": "^0.7.20"
+  }
 }
