@@ -1,13 +1,16 @@
 {
   "name": "node-cdc-proto",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The protocol implement of cdc message for js",
   "main": "index.js",
   "repository": "git@code.aliyun.com:rigo/node-cdc-proto.git",
   "author": "zhangtc@rigoiot.com",
   "license": "RIGO",
+  "scripts": {
+    "compile-pbjs": "node_modules/protobufjs/bin/pbjs -t static-module -w commonjs -r cdc -o lib/pb/protocol_pb.js lib/pb/protocol.proto"
+  },
   "dependencies": {
-    "google-protobuf": "^3.3.0",
-    "nats": "^0.7.20"
+    "nats": "^0.7.20",
+    "protobufjs": "^6.8.0"
   }
 }

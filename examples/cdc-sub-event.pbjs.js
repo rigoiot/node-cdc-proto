@@ -3,7 +3,7 @@
 /* jslint node: true */
 'use strict';
 
-var proto = require('../lib/proto');
+var pb = require('../lib/proto');
 
 var server = process.argv[2];
 var subject = process.argv[3];
@@ -30,14 +30,8 @@ nats.on('close', function() {
 console.log('Listening on [' + subject + ']');
 
 nats.subscribe(subject, function(msg) {
-  console.log(msg);
-  var cdcMsg = proto.CDCMsg.deserializeBinary(
-    new Buffer(msg, 'binary').toByteArray()
-  );
-  console.log(new Date() + ' >>>> ' + cdcMsg.getData());
-
-  var presenceEvent = proto.CDCClientPresenceEvent.deserializeBinary(
-    cdcMsg.getPayload()
-  );
-  console.log(new Date() + ' >>>> ' + presenceEvent);
+  var cdcMsg = pb.CDCMsg.decode(new Buffer(msg, 'binary').toByteArray());
+  console.log(new Date() + ' >>>> ' + JSON.stringify(cdcMsg.toJSON()));
+  var presenceEvent = pb.CDCClientPresenceEvent.decode(cdcMsg.payload);
+  console.log(new Date() + ' >>>> ' + JSON.stringify(presenceEvent.toJSON()));
 });

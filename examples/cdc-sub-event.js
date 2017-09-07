@@ -34,10 +34,8 @@ nats.subscribe(subject, function(msg) {
   var cdcMsg = proto.CDCMsg.deserializeBinary(
     new Buffer(msg, 'binary').toByteArray()
   );
-  console.log(new Date() + ' >>>> ' + cdcMsg.getData());
-
   var presenceEvent = proto.CDCClientPresenceEvent.deserializeBinary(
     cdcMsg.getPayload()
   );
-  console.log(new Date() + ' >>>> ' + presenceEvent);
+  console.log('Received "' + presenceEvent + '"');
 });
