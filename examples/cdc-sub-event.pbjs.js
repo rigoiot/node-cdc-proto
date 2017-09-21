@@ -14,6 +14,7 @@ if (!subject || !server) {
 }
 
 var nats = require('nats').connect({
+  preserveBuffers: true,
   servers: [server]
 });
 
@@ -30,7 +31,7 @@ nats.on('close', function() {
 console.log('Listening on [' + subject + ']');
 
 nats.subscribe(subject, function(msg) {
-  var cdcMsg = pb.CDCMsg.decode(new Buffer(msg, 'binary').toByteArray());
+  var cdcMsg = pb.CDCMsg.decode(msg.toByteArray());
   console.log(new Date() + ' >>>> ' + JSON.stringify(cdcMsg.toJSON()));
   var presenceEvent = pb.CDCClientPresenceEvent.decode(cdcMsg.payload);
   console.log(new Date() + ' >>>> ' + JSON.stringify(presenceEvent.toJSON()));
